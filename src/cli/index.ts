@@ -32,10 +32,10 @@ export function runCli(args: string[]): CliResult {
     return {
       exitCode: 0,
       output: [
-        "RepoForge",
+        "RepoSmith",
         "",
         "Usage:",
-        "  repoforge [--help] [--version]",
+        "  reposmith [--help] [--version]",
         "",
         "Status:",
         "  CLI scaffolding is in place. Analysis commands are not implemented yet.",
@@ -47,7 +47,7 @@ export function runCli(args: string[]): CliResult {
   return {
     exitCode: 0,
     output:
-      "RepoForge CLI scaffolding is in place. Analysis commands are not implemented yet.\n",
+      "RepoSmith CLI scaffolding is in place. Analysis commands are not implemented yet.\n",
   };
 }
 

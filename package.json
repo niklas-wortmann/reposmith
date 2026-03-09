@@ -1,10 +1,10 @@
 {
-  "name": "repoforge",
+  "name": "reposmith",
   "version": "0.1.0",
   "description": "Make your codebase agent-ready. One command.",
   "type": "module",
   "bin": {
-    "repoforge": "./dist/cli/index.js"
+    "reposmith": "./dist/cli/index.js"
   },
   "scripts": {
     "build": "tsup",
@@ -34,12 +34,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/niklas-wortmann/repoforge.git"
+    "url": "git+https://github.com/niklas-wortmann/reposmith.git"
   },
   "bugs": {
-    "url": "https://github.com/niklas-wortmann/repoforge/issues"
+    "url": "https://github.com/niklas-wortmann/reposmith/issues"
   },
-  "homepage": "https://github.com/niklas-wortmann/repoforge#readme",
+  "homepage": "https://github.com/niklas-wortmann/reposmith#readme",
   "packageManager": "pnpm@10.8.1",
   "engines": {
     "node": ">=20"

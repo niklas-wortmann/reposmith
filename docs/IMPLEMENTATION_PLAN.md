@@ -1,4 +1,4 @@
-# RepoForge — Implementation Plan
+# RepoSmith — Implementation Plan
 
 ## Timeline: 4 weeks to MVP
 
@@ -8,7 +8,7 @@ Each week has a clear deliverable. At the end of each week, the tool should be r
 
 ## Week 1: Foundation + Filesystem Scanner + Stack Detection
 
-**Goal:** `npx repoforge init` runs on any repo, detects the stack, and outputs basic info.
+**Goal:** `npx reposmith init` runs on any repo, detects the stack, and outputs basic info.
 
 ### Tasks
 
@@ -47,20 +47,20 @@ Each week has a clear deliverable. At the end of each week, the tool should be r
 5. **Basic init output**
    - Print detected stack info to terminal
    - Print file counts by role
-   - Generate a minimal `repo-summary.md` in `.repoforge/`
+   - Generate a minimal `repo-summary.md` in `.reposmith/`
 
 ### Week 1 deliverable
 
-Running `npx repoforge init` on any repo:
+Running `npx reposmith init` on any repo:
 - Shows a spinner
 - Prints detected language(s), framework(s), file counts
-- Creates `.repoforge/repo-summary.md`
+- Creates `.reposmith/repo-summary.md`
 
 ---
 
 ## Week 2: Dependency Graph + Tree-sitter Adapters
 
-**Goal:** RepoForge detects module boundaries, extracts imports, builds a dependency graph, and visualizes it.
+**Goal:** RepoSmith detects module boundaries, extracts imports, builds a dependency graph, and visualizes it.
 
 ### Tasks
 
@@ -106,21 +106,21 @@ Running `npx repoforge init` on any repo:
    - Identify root and leaf modules
 
 6. **Graph command**
-   - Implement `repoforge graph` command
+   - Implement `reposmith graph` command
    - ASCII graph visualization (modules as nodes, arrows as edges, highlight cycles)
    - Output `dependency-graph.json`
    - Write tests for graph construction and cycle detection
 
 ### Week 2 deliverable
 
-Running `repoforge graph` shows an ASCII dependency graph.
-Running `repoforge init` now also outputs `.repoforge/dependency-graph.json`.
+Running `reposmith graph` shows an ASCII dependency graph.
+Running `reposmith init` now also outputs `.reposmith/dependency-graph.json`.
 
 ---
 
 ## Week 3: Documentation Generation
 
-**Goal:** `repoforge init` generates the full `.repoforge/` knowledge base and root-level AGENTS.md.
+**Goal:** `reposmith init` generates the full `.reposmith/` knowledge base and root-level AGENTS.md.
 
 ### Tasks
 
@@ -132,47 +132,47 @@ Running `repoforge init` now also outputs `.repoforge/dependency-graph.json`.
    - If an AGENTS.md already exists, do not overwrite without confirmation. Print diff or offer to merge.
 
 2. **Architecture doc generator**
-   - Generate `.repoforge/architecture.md`
+   - Generate `.reposmith/architecture.md`
    - Module map with descriptions
    - Dependency directions (which modules depend on which)
    - Layer boundaries (if detectable)
    - Circular dependency warnings
 
 3. **Modules doc generator**
-   - Generate `.repoforge/modules.md`
+   - Generate `.reposmith/modules.md`
    - Per-module sections: purpose, key files, dependencies, depended-on-by, tests
    - Pull module descriptions from package.json description, README first paragraph, or directory name
    - List key files (entry points, most-imported files)
 
 4. **Conventions doc generator**
-   - Generate `.repoforge/conventions.md`
+   - Generate `.reposmith/conventions.md`
    - Detected patterns from tree-sitter analysis (error handling, dependency injection, export patterns)
    - Naming conventions (detected from file/directory naming patterns)
    - Detected architectural rules (layer direction, module boundaries)
    - If no patterns detected with confidence, note that conventions should be manually added
 
 5. **Entry points doc generator**
-   - Generate `.repoforge/entrypoints.md`
+   - Generate `.reposmith/entrypoints.md`
    - List all detected entry points with file path, type (main, route, export, CLI), and brief context
 
 6. **Repo summary generator**
-   - Enhance `.repoforge/repo-summary.md` with full stack info, file statistics, team size heuristics (from git if available)
+   - Enhance `.reposmith/repo-summary.md` with full stack info, file statistics, team size heuristics (from git if available)
 
 7. **Score JSON generator**
    - Placeholder for now (score engine comes in week 4)
-   - Generate `.repoforge/score.json` with empty structure
+   - Generate `.reposmith/score.json` with empty structure
 
 ### Week 3 deliverable
 
-Running `repoforge init` creates:
+Running `reposmith init` creates:
 - Root-level `AGENTS.md`
-- Complete `.repoforge/` directory with all documentation files
+- Complete `.reposmith/` directory with all documentation files
 
 ---
 
 ## Week 4: Scoring Engine + Remote Scanning + Polish
 
-**Goal:** `repoforge score` produces a detailed health report. `repoforge scan` works on GitHub URLs. README and launch assets are complete.
+**Goal:** `reposmith score` produces a detailed health report. `reposmith scan` works on GitHub URLs. README and launch assets are complete.
 
 ### Tasks
 
@@ -188,7 +188,7 @@ Running `repoforge init` creates:
    - Write snapshot tests for known repo profiles
 
 2. **Score command**
-   - Implement `repoforge score` command
+   - Implement `reposmith score` command
    - Terminal output with category breakdowns, check results, and suggestions
    - Use colored output: green for pass, yellow for warn, red for fail
    - Print total score prominently
@@ -199,19 +199,19 @@ Running `repoforge init` creates:
    - Support GITHUB_TOKEN env var for authenticated requests
    - Handle rate limiting with clear error messages
    - Adapt analysis pipeline for remote mode (skip unavailable checks)
-   - Implement `repoforge scan` command
+   - Implement `reposmith scan` command
    - Print condensed score report (no doc generation for remote)
    - Write tests with mocked GitHub API responses
 
 4. **Init command integration**
-   - Wire score engine into `repoforge init` so it prints the score after generating docs
+   - Wire score engine into `reposmith init` so it prints the score after generating docs
    - Update `score.json` generation with real scores
 
 5. **README**
    - Write README.md with:
      - One-line description
      - Terminal output screenshot/demo
-     - Installation: `npx repoforge init`
+     - Installation: `npx reposmith init`
      - Commands reference (init, score, graph, scan)
      - Example outputs for each command
      - Comparison scores for well-known repos
@@ -223,7 +223,7 @@ Running `repoforge init` creates:
 6. **Polish**
    - End-to-end testing: run on 5+ real open-source repos across different languages
    - Fix edge cases discovered during real-repo testing
-   - Ensure `npx repoforge init` works from a fresh npm environment
+   - Ensure `npx reposmith init` works from a fresh npm environment
    - Verify all terminal output is clean and aligned
    - Add `--json` flag to `score` command for CI consumption
    - Add `--no-write` flag to `init` for dry-run mode (print what would be generated)
@@ -255,11 +255,11 @@ Create minimal fixture repos for testing. Each should be 5-15 files with realist
 
 These are noted for future planning only. None should be started during the 4-week MVP sprint.
 
-- **CI integration** — GitHub Action that runs `repoforge score` on PRs and comments with the report
+- **CI integration** — GitHub Action that runs `reposmith score` on PRs and comments with the report
 - **Score badges** — SVG badge for README showing agent readiness score
-- **Public leaderboard** — Web service at repoforge.dev showing scores for scanned repos
+- **Public leaderboard** — Web service at reposmith.dev showing scores for scanned repos
 - **LLM enrichment** — Optional mode that uses an LLM to enhance convention detection
 - **Agent-specific output** — Generate CLAUDE.md, .cursor/rules, .github/copilot-instructions.md from the same source
-- **Watch mode** — `repoforge watch` that re-scores on file changes
-- **Config file** — `.repoforge.config.json` for custom scoring rules and ignore patterns
+- **Watch mode** — `reposmith watch` that re-scores on file changes
+- **Config file** — `.reposmith.config.json` for custom scoring rules and ignore patterns
 - **IDE plugin** — JetBrains / VS Code extension showing harness health in the editor

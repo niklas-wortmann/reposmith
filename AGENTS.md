@@ -1,6 +1,6 @@
 # AGENTS.md
 
-RepoForge is a CLI tool that analyzes codebases and generates agent-readable documentation. Written in TypeScript, runs on Node.js, distributed via npm.
+RepoSmith is a CLI tool that analyzes codebases and generates agent-readable documentation. Written in TypeScript, runs on Node.js, distributed via npm.
 
 ## Quick Reference
 
@@ -40,7 +40,7 @@ See `docs/PRD.md` for product requirements and feature specifications.
 - `src/cli/` — CLI commands and terminal output formatting
 - `src/analyzer/` — The four analysis layers (filesystem, stack, graph, adapters)
 - `src/scoring/` — Health score calculation (architecture, documentation, complexity, tests)
-- `src/generators/` — Output file generators (AGENTS.md, .repoforge/* docs)
+- `src/generators/` — Output file generators (AGENTS.md, .reposmith/* docs)
 - `src/types/` — Shared TypeScript types and interfaces
 - `grammars/` — Tree-sitter WASM grammar files (do not edit manually)
 - `test/fixtures/` — Sample repos for testing each language/framework
@@ -71,5 +71,5 @@ See `docs/PRD.md` for product requirements and feature specifications.
 - **WASM over native tree-sitter** — Install friction matters more than parse speed for an npx tool.
 - **Smart sampling over full parsing** — Parse ~200 representative files max, not every file.
 - **Documentation weight is 35%** — Highest weight because it's the biggest predictor of agent performance and the easiest to improve.
-- **AGENTS.md is the hero output** — Root-level file that agents auto-discover. The .repoforge/ directory is supporting detail.
+- **AGENTS.md is the hero output** — Root-level file that agents auto-discover. The .reposmith/ directory is supporting detail.
 - **No LLM dependency** — All analysis is deterministic. No API calls, no model inference.

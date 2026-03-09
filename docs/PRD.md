@@ -1,8 +1,8 @@
-# RepoForge — Product Requirements Document
+# RepoSmith — Product Requirements Document
 
 ## One-Line Summary
 
-RepoForge scans any codebase, builds a dependency graph, generates agent-readable documentation, and scores how ready the repository is for AI coding agents.
+RepoSmith scans any codebase, builds a dependency graph, generates agent-readable documentation, and scores how ready the repository is for AI coding agents.
 
 ## Problem
 
@@ -18,13 +18,13 @@ Analyze any repo, generate agent-friendly docs, produce a shareable score. Every
 
 ## Success Criteria
 
-A developer runs `npx repoforge init` and learns something new about their repo within 10 seconds.
+A developer runs `npx reposmith init` and learns something new about their repo within 10 seconds.
 
 ---
 
 ## Core Features (MVP)
 
-### Feature 1: Repo Analysis (`repoforge init`)
+### Feature 1: Repo Analysis (`reposmith init`)
 
 The CLI scans the repository and extracts:
 
@@ -39,7 +39,7 @@ The CLI scans the repository and extracts:
 **Command:**
 
 ```
-npx repoforge init
+npx reposmith init
 ```
 
 **Example output:**
@@ -54,12 +54,12 @@ Agent Readiness Score: 71 / 100
 
 Created:
   AGENTS.md                          (root-level agent entry point)
-  .repoforge/architecture.md       (module map and boundaries)
-  .repoforge/modules.md            (per-module documentation)
-  .repoforge/conventions.md        (detected golden principles)
-  .repoforge/entrypoints.md        (key entry points and APIs)
-  .repoforge/dependency-graph.json (machine-readable graph)
-  .repoforge/score.json            (health score breakdown)
+  .reposmith/architecture.md       (module map and boundaries)
+  .reposmith/modules.md            (per-module documentation)
+  .reposmith/conventions.md        (detected golden principles)
+  .reposmith/entrypoints.md        (key entry points and APIs)
+  .reposmith/dependency-graph.json (machine-readable graph)
+  .reposmith/score.json            (health score breakdown)
 ```
 
 **Key requirement:** Works on any repo with zero configuration. No config files, no setup wizard, no API keys.
@@ -70,20 +70,20 @@ The tool generates a structured knowledge base optimized for LLM navigation.
 
 **Root-level AGENTS.md** (the hero artifact):
 
-This is the most important output. A short (~100 line) file in the repo root that serves as a table of contents pointing into `.repoforge/`. Every major AI coding agent (Claude Code, Codex, Cursor, Copilot) automatically reads instruction files from the root. This file should:
+This is the most important output. A short (~100 line) file in the repo root that serves as a table of contents pointing into `.reposmith/`. Every major AI coding agent (Claude Code, Codex, Cursor, Copilot) automatically reads instruction files from the root. This file should:
 
 - Summarize the project (purpose, stack, structure)
 - List module boundaries with one-line descriptions
-- Link to detailed docs in `.repoforge/`
+- Link to detailed docs in `.reposmith/`
 - Include detected golden principles (conventions the codebase follows)
 - Mention key entry points and build/test/lint commands
 
 Format the content so it is useful to both humans and LLMs. Use clear headers, short paragraphs, and explicit cross-references.
 
-**.repoforge/ directory:**
+**.reposmith/ directory:**
 
 ```
-.repoforge/
+.reposmith/
   architecture.md          # Module map, dependency directions, layer boundaries
   modules.md               # Per-module docs: purpose, key files, dependencies, tests
   conventions.md            # Detected golden principles and patterns
@@ -117,13 +117,13 @@ Format the content so it is useful to both humans and LLMs. Use clear headers, s
 **Command:**
 
 ```
-repoforge score
+reposmith score
 ```
 
 **Example output:**
 
 ```
-RepoForge Health Report
+RepoSmith Health Report
 
 Agent Readiness Score: 64 / 100
 
@@ -170,7 +170,7 @@ Documentation is weighted highest because it is the single biggest predictor of 
 **Command:**
 
 ```
-npx repoforge scan github.com/vercel/next.js
+npx reposmith scan github.com/vercel/next.js
 ```
 
 **Example output:**
@@ -185,7 +185,7 @@ Documentation    ████████░░░░  67
 Complexity       ██████░░░░░░  58
 Tests            █████████░░░  85
 
-View full report: https://repoforge.dev/scores/vercel/next.js
+View full report: https://reposmith.dev/scores/vercel/next.js
 ```
 
 This command scores any public GitHub repository without cloning it. Uses the GitHub REST API to fetch repository tree, config files, and representative source files. Results can optionally be cached and published to a public leaderboard.
@@ -203,7 +203,7 @@ This is the viral feature. Developers will scan popular repos, compare scores, a
 **Command:**
 
 ```
-repoforge graph
+reposmith graph
 ```
 
 **Example output (ASCII):**
@@ -224,10 +224,10 @@ Also outputs `dependency-graph.json` for tooling consumption.
 
 | Command | Description |
 |---------|-------------|
-| `repoforge init` | Analyze repo, generate .repoforge/ docs, produce score |
-| `repoforge score` | Print health report (re-scans, no doc generation) |
-| `repoforge graph` | Output dependency graph (ASCII + JSON) |
-| `repoforge scan <github-url>` | Score a public GitHub repo remotely |
+| `reposmith init` | Analyze repo, generate .reposmith/ docs, produce score |
+| `reposmith score` | Print health report (re-scans, no doc generation) |
+| `reposmith graph` | Output dependency graph (ASCII + JSON) |
+| `reposmith scan <github-url>` | Score a public GitHub repo remotely |
 
 No other commands for MVP.
 
@@ -250,7 +250,7 @@ These are explicitly out of scope for the MVP. Do not build them.
 
 ## Technical Positioning
 
-RepoForge is technology-agnostic. It must work on any codebase in any language. The architecture achieves this through four layers:
+RepoSmith is technology-agnostic. It must work on any codebase in any language. The architecture achieves this through four layers:
 
 1. **Filesystem scanner** — fast parallel directory walk, ignore handling, file classification
 2. **Universal repo graph** — language-agnostic data structure representing modules and their relationships
@@ -267,14 +267,14 @@ See ARCHITECTURE.md for detailed technical design.
 
 **Show HN title options:**
 
-- "Show HN: RepoForge — Make your codebase readable for AI agents"
+- "Show HN: RepoSmith — Make your codebase readable for AI agents"
 - "Show HN: One command to make your codebase agent-ready"
 
 **Demo assets for launch:**
 
 - README with clear terminal output screenshots
 - Comparison scores across popular repos (React, Next.js, Express, Django, Rails)
-- Before/after agent performance anecdote (same prompt, with and without RepoForge)
+- Before/after agent performance anecdote (same prompt, with and without RepoSmith)
 
 **Post-launch content engine:**
 

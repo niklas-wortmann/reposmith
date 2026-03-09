@@ -1,5 +1,5 @@
 export default {
-  repo: "niklas-wortmann/repoforge",
+  repo: "niklas-wortmann/reposmith",
   title: "# Changelog",
   types: [
     { type: "feat", section: "Features" },
