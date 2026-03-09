@@ -1,5 +1,5 @@
 export default {
-  repo: "niklas-wortmann/repoatlas",
+  repo: "niklas-wortmann/repoforge",
   title: "# Changelog",
   types: [
     { type: "feat", section: "Features" },

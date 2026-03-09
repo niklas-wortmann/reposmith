@@ -1,11 +1,11 @@
-# RepoAtlas
+# RepoForge
 
 **Make your codebase agent-ready. One command.**
 
-RepoAtlas scans your repository, builds a dependency graph, generates documentation that AI coding agents can navigate, and scores how ready your codebase is for agent-assisted development.
+RepoForge scans your repository, builds a dependency graph, generates documentation that AI coding agents can navigate, and scores how ready your codebase is for agent-assisted development.
 
 ```
-$ npx repoatlas init
+$ npx repoforge init
 
 ✔ Detected TypeScript + Next.js (pnpm workspace)
 ✔ Scanned 412 source files across 9 modules
@@ -16,12 +16,12 @@ Agent Readiness Score: 71 / 100
 
 Created:
   AGENTS.md                          → root-level agent entry point
-  .repoatlas/architecture.md       → module map and boundaries
-  .repoatlas/modules.md            → per-module documentation
-  .repoatlas/conventions.md        → detected coding conventions
-  .repoatlas/entrypoints.md        → key entry points and APIs
-  .repoatlas/dependency-graph.json → machine-readable graph
-  .repoatlas/score.json            → health score breakdown
+  .repoforge/architecture.md       → module map and boundaries
+  .repoforge/modules.md            → per-module documentation
+  .repoforge/conventions.md        → detected coding conventions
+  .repoforge/entrypoints.md        → key entry points and APIs
+  .repoforge/dependency-graph.json → machine-readable graph
+  .repoforge/score.json            → health score breakdown
 ```
 
 Your AI agent just got a lot smarter about your codebase.
@@ -32,20 +32,20 @@ Every developer gets disappointing results the first time they point an AI codin
 
 OpenAI shipped a million-line product using only AI agents. Their secret wasn't a better model. It was what they built *around* the model: structured docs agents can navigate, architectural guardrails, codified conventions. They call it [harness engineering](https://openai.com/index/harness-engineering/). They didn't open-source any of it.
 
-RepoAtlas gives you that harness in one command.
+RepoForge gives you that harness in one command.
 
 ## Install
 
 No installation needed. Run directly:
 
 ```bash
-npx repoatlas init
+npx repoforge init
 ```
 
 Or install globally:
 
 ```bash
-npm install -g repoatlas
+npm install -g repoforge
 ```
 
 ## Project Docs
@@ -54,7 +54,7 @@ Product and implementation docs live in [`docs/README.md`](docs/README.md), with
 
 ## Release
 
-RepoAtlas uses a tag-driven release flow built around `bumpp`, `changelogen`, and GitHub Actions.
+RepoForge uses a tag-driven release flow built around `bumpp`, `changelogen`, and GitHub Actions.
 
 ```bash
 pnpm install
@@ -69,7 +69,7 @@ Use conventional commit messages if you want clean changelog sections. The chang
 
 ### npm Setup
 
-Preferred: configure npm trusted publishing for the `niklas-wortmann/repoatlas` package against `.github/workflows/release.yml`.
+Preferred: configure npm trusted publishing for the `niklas-wortmann/repoforge` package against `.github/workflows/release.yml`.
 
 Fallback: add an `NPM_TOKEN` repository secret and the same workflow will publish with that token instead.
 
@@ -97,12 +97,12 @@ Local installs configure `core.hooksPath` to use [`.githooks/commit-msg`](.githo
 
 ## Commands
 
-### `repoatlas init`
+### `repoforge init`
 
 Analyze your repo and generate the full agent documentation suite.
 
 ```
-$ repoatlas init
+$ repoforge init
 
 ✔ Detected Python + Django
 ✔ Scanned 287 source files across 6 modules
@@ -112,14 +112,14 @@ $ repoatlas init
 Agent Readiness Score: 58 / 100
 ```
 
-### `repoatlas score`
+### `repoforge score`
 
 Print a detailed health report without generating docs.
 
 ```
-$ repoatlas score
+$ repoforge score
 
-RepoAtlas Health Report
+RepoForge Health Report
 
 Agent Readiness Score: 58 / 100
 
@@ -145,12 +145,12 @@ Suggestions:
   → Add tests for: notifications, queue
 ```
 
-### `repoatlas graph`
+### `repoforge graph`
 
 Visualize module dependencies.
 
 ```
-$ repoatlas graph
+$ repoforge graph
 
   api → services → db
    ↓       ↓
@@ -159,12 +159,12 @@ $ repoatlas graph
        billing      ⚠ circular
 ```
 
-### `repoatlas scan <github-url>`
+### `repoforge scan <github-url>`
 
 Score any public GitHub repo without cloning it.
 
 ```
-$ repoatlas scan github.com/vercel/next.js
+$ repoforge scan github.com/vercel/next.js
 
 Scanning vercel/next.js via GitHub API...
 
@@ -178,7 +178,7 @@ Tests            █████████░░░  85
 
 ## How Scoring Works
 
-RepoAtlas evaluates four dimensions of agent readiness:
+RepoForge evaluates four dimensions of agent readiness:
 
 | Category | Weight | What it measures |
 |----------|--------|------------------|
@@ -191,11 +191,11 @@ Documentation is weighted highest because it has the biggest impact on agent per
 
 ## What Gets Generated
 
-RepoAtlas creates a root-level `AGENTS.md` that AI coding agents automatically discover, plus a `.repoatlas/` directory with detailed analysis:
+RepoForge creates a root-level `AGENTS.md` that AI coding agents automatically discover, plus a `.repoforge/` directory with detailed analysis:
 
 ```
 AGENTS.md                          # ~100 lines, table of contents for agents
-.repoatlas/
+.repoforge/
   architecture.md                  # Module map, dependency directions, boundaries
   modules.md                       # Per-module: purpose, key files, deps, tests
   conventions.md                   # Detected coding patterns and golden principles
@@ -207,7 +207,7 @@ AGENTS.md                          # ~100 lines, table of contents for agents
 
 ## Language Support
 
-RepoAtlas works on any codebase. It uses tree-sitter for accurate import analysis in supported languages, with regex fallback for everything else.
+RepoForge works on any codebase. It uses tree-sitter for accurate import analysis in supported languages, with regex fallback for everything else.
 
 | Language | Import Analysis | Entry Point Detection |
 |----------|----------------|----------------------|

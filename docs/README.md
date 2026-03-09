@@ -1,8 +1,8 @@
-# RepoAtlas — Documentation Index
+# RepoForge — Documentation Index
 
 ## How to use these files
 
-These documents capture the product spec, architecture, types, and implementation plan for RepoAtlas. Read them together when you need the full project context.
+These documents capture the product spec, architecture, types, and implementation plan for RepoForge. Read them together when you need the full project context.
 
 ### Documentation files (for context and spec)
 

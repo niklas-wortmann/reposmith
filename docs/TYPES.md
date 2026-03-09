@@ -1,4 +1,4 @@
-# RepoAtlas — Core Types Reference
+# RepoForge — Core Types Reference
 
 This document defines the central data types that flow through the analysis pipeline. All types are defined in `src/types/` and shared across analyzers, scorers, and generators.
 
@@ -282,7 +282,7 @@ interface ScoreReport {
   /** Timestamp of scoring */
   timestamp: string;
 
-  /** RepoAtlas version */
+  /** RepoForge version */
   version: string;
 }
 
@@ -364,7 +364,7 @@ interface AgentFile {
 Not implemented in MVP, but the type is defined here for future reference.
 
 ```typescript
-interface RepoAtlasConfig {
+interface RepoForgeConfig {
   /** Custom ignore patterns (in addition to defaults) */
   ignore?: string[];
 

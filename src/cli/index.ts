@@ -32,10 +32,10 @@ export function runCli(args: string[]): CliResult {
     return {
       exitCode: 0,
       output: [
-        "RepoAtlas",
+        "RepoForge",
         "",
         "Usage:",
-        "  repoatlas [--help] [--version]",
+        "  repoforge [--help] [--version]",
         "",
         "Status:",
         "  CLI scaffolding is in place. Analysis commands are not implemented yet.",
@@ -47,7 +47,7 @@ export function runCli(args: string[]): CliResult {
   return {
     exitCode: 0,
     output:
-      "RepoAtlas CLI scaffolding is in place. Analysis commands are not implemented yet.\n",
+      "RepoForge CLI scaffolding is in place. Analysis commands are not implemented yet.\n",
   };
 }
 
